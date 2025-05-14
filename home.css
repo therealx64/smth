@@ -1,3 +1,5 @@
+/* Basic styling */
+
 body {
   font-family: Verdana, sans-serif;
   background: url('assets/images/sky-bg.png') repeat-x;
@@ -42,39 +44,23 @@ body {
   font-weight: bold;
 }
 
-.alert {
-  background-color: orange;
-  padding: 10px;
+.main-content {
+  padding: 20px;
   text-align: center;
+}
+
+.error {
+  color: red;
   font-weight: bold;
 }
 
-.main-content {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  justify-content: center;
-}
-
-.account-info {
-  text-align: center;
-}
-
-.error-message {
-  text-align: center;
-  background-color: #ff6666;
-  color: white;
-  padding: 20px;
-  border-radius: 5px;
-  font-size: 1.2em;
-}
-
-.ad-banner {
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  text-align: center;
-  width: 300px;
+#avatar-img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border: 2px solid #333;
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
 footer {
