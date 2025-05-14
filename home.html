@@ -26,15 +26,8 @@
   </div>
 
   <div class="main-content">
-    <div class="login-box">
-      <h3>Login or Register</h3>
-      <input type="text" placeholder="Username" disabled /><br />
-      <input type="password" placeholder="Password" disabled /><br />
-      <button disabled>Login</button>
-      <button disabled>Register</button>
-      <div class="login-links">
-        <a href="index.html">Log in here</a>
-      </div>
+    <div class="login-box" id="login-box">
+      <!-- Login or welcome message will be inserted here -->
     </div>
 
     <div class="ad-banner">
@@ -48,10 +41,21 @@
   </footer>
 
   <script>
+    const loginBox = document.getElementById("login-box");
+    const loggedInUser = localStorage.getItem("loggedInUser");
+
+    if (loggedInUser) {
+      loginBox.innerHTML = `<h3>Welcome, ${loggedInUser}!</h3>`;
+    } else {
+      loginBox.innerHTML = `
+        <h3 style="color: red;">You are not logged in. Please log in first.</h3>
+        <a href="index.html">Go to Login Page</a>
+      `;
+    }
+
     // Community link click handler
     document.getElementById("community-link").addEventListener("click", function(event) {
       event.preventDefault();
-      const loggedInUser = localStorage.getItem("loggedInUser");
       if (loggedInUser) {
         window.location.href = "community.html";
       } else {
@@ -62,10 +66,9 @@
     // Play Now buttons click handler
     document.querySelectorAll(".play-now").forEach(button => {
       button.addEventListener("click", () => {
-        const loggedInUser = localStorage.getItem("loggedInUser");
         if (!loggedInUser) {
           alert("Please log in to play the game.");
-        } // else do nothing for now
+        }
       });
     });
   </script>
