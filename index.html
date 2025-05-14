@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Bloxtopia</title>
+  <title>Bloxtopia - Login</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -70,9 +70,10 @@
       const storedPassword = localStorage.getItem(username);
 
       if (storedPassword && storedPassword === password) {
+        localStorage.setItem('loggedInUser', username); // Store the logged-in user
         alert("Login successful! Welcome, " + username + "!");
-        // Redirect to another page (game or user dashboard)
-        window.location.href = 'game.html';
+        // Redirect to home page
+        window.location.href = 'home.html';
       } else {
         alert("Invalid username or password.");
       }
