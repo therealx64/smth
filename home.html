@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bloxtopia - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <img src="assets/images/bloxtopia-logo.png" alt="Bloxtopia Logo" class="logo">
+    <button class="play-now" onclick="window.location.href='game.html'">PLAY NOW</button>
+  </div>
+
+  <nav class="navbar">
+    <a href="#">Home</a>
+    <a href="#">Games</a>
+    <a href="#">Catalog</a>
+    <a href="#">Community</a>
+    <a href="#">Forum</a>
+    <a href="#">News</a>
+    <a href="#">Help</a>
+  </nav>
+
+  <div class="alert">
+    uh oh looks like you found this <a href="#">test.bloxtopia.com</a>
+  </div>
+
+  <div class="main-content">
+    <div class="account-info">
+      <h3>Welcome, <span id="username-display">Guest</span></h3>
+      <button onclick="logout()">Logout</button>
+    </div>
+
+    <div class="ad-banner">
+      <p>The FREE online building game.</p>
+      <button class="play-now" onclick="window.location.href='game.html'">PLAY NOW</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>Bloxtopia is not affiliated with any other game platforms.</p>
+  </footer>
+
+  <script>
+    // Function to display the username
+    function displayUsername() {
+      const username = localStorage.getItem('loggedInUser');
+      const usernameDisplay = document.getElementById("username-display");
+
+      if (username) {
+        usernameDisplay.textContent = username;
+      } else {
+        usernameDisplay.textContent = "Guest";
+      }
+    }
+
+    // Logout function to clear localStorage and redirect to login page
+    function logout() {
+      localStorage.removeItem('loggedInUser');
+      alert("You have logged out.");
+      window.location.href = "login.html"; // Redirect to the login page
+    }
+
+    // Call the function to display the username when the page loads
+    window.onload = displayUsername;
+  </script>
+</body>
+</html>
