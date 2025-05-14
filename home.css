@@ -70,7 +70,9 @@ body {
 .avatar {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 120px; /* Ensure it's wide enough to display properly */
 }
 
 .head {
@@ -95,11 +97,11 @@ body {
 }
 
 .left-arm {
-  margin-left: -40px;
+  margin-left: -25px; /* Adjust position to the left */
 }
 
 .right-arm {
-  margin-left: 20px;
+  margin-left: 25px; /* Adjust position to the right */
 }
 
 .left-leg, .right-leg {
@@ -110,11 +112,11 @@ body {
 }
 
 .left-leg {
-  margin-left: -20px;
+  margin-left: -25px; /* Adjust position to the left */
 }
 
 .right-leg {
-  margin-left: 20px;
+  margin-left: 25px; /* Adjust position to the right */
 }
 
 .ad-banner {
