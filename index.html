@@ -8,7 +8,7 @@
 <body>
   <div class="header">
     <img src="assets/images/bloxtopia-logo.png" alt="Bloxtopia Logo" class="logo">
-    <button class="play-now">PLAY NOW</button>
+    <button class="play-now" onclick="window.location.href='game.html'">PLAY NOW</button>
   </div>
 
   <nav class="navbar">
@@ -28,10 +28,10 @@
   <div class="main-content">
     <div class="login-box">
       <h3>Login or Register</h3>
-      <input type="text" placeholder="Username"><br>
-      <input type="password" placeholder="Password"><br>
-      <button>Login</button>
-      <button>Register</button>
+      <input type="text" id="username" placeholder="Username"><br>
+      <input type="password" id="password" placeholder="Password"><br>
+      <button onclick="login()">Login</button>
+      <button onclick="register()">Register</button>
       <div class="login-links">
         <a href="#">Forgot your password?</a>
       </div>
@@ -46,5 +46,37 @@
   <footer>
     <p>Bloxtopia is not affiliated with any other game platforms.</p>
   </footer>
+
+  <script>
+    // Simulate registration
+    function register() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username && password) {
+        // Store user data in localStorage (for demo purposes, not secure)
+        localStorage.setItem(username, password);
+        alert("Registration successful! You can now login.");
+      } else {
+        alert("Please enter a username and password.");
+      }
+    }
+
+    // Simulate login
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const storedPassword = localStorage.getItem(username);
+
+      if (storedPassword && storedPassword === password) {
+        alert("Login successful! Welcome, " + username + "!");
+        // Redirect to another page (game or user dashboard)
+        window.location.href = 'game.html';
+      } else {
+        alert("Invalid username or password.");
+      }
+    }
+  </script>
 </body>
 </html>
