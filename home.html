@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bloxtopia - Home</title>
-  <link rel="stylesheet" href="home.css">
+  <meta charset="UTF-8" />
+  <title>Bloxtopia</title>
+  <link rel="stylesheet" href="home.css" />
 </head>
 <body>
   <div class="header">
-    <img src="assets/images/bloxtopia-logo.png" alt="Bloxtopia Logo" class="logo">
-    <button class="play-now" onclick="window.location.href='game.html'">PLAY NOW</button>
+    <img src="assets/images/bloxtopia-logo.png" alt="Bloxtopia Logo" class="logo" />
+    <button class="play-now">PLAY NOW</button>
   </div>
 
   <nav class="navbar">
-    <a href="#">Home</a>
+    <a href="home.html">Home</a>
+    <a href="#" id="community-link">Community</a>
     <a href="#">Games</a>
     <a href="#">Catalog</a>
-    <a href="#">Community</a>
     <a href="#">Forum</a>
     <a href="#">News</a>
     <a href="#">Help</a>
@@ -26,19 +26,20 @@
   </div>
 
   <div class="main-content">
-    <div id="account-info" class="account-info">
-      <h3>Welcome, <span id="username-display">Guest</span></h3>
-      <button onclick="logout()">Logout</button>
-    </div>
-
-    <!-- Error Message if not logged in -->
-    <div id="error-message" class="error-message" style="display: none;">
-      <p>Error: You are not logged in! Please <a href="index.html">login</a> to continue.</p>
+    <div class="login-box">
+      <h3>Login or Register</h3>
+      <input type="text" placeholder="Username" disabled /><br />
+      <input type="password" placeholder="Password" disabled /><br />
+      <button disabled>Login</button>
+      <button disabled>Register</button>
+      <div class="login-links">
+        <a href="index.html">Log in here</a>
+      </div>
     </div>
 
     <div class="ad-banner">
       <p>The FREE online building game.</p>
-      <button class="play-now" onclick="window.location.href='game.html'">PLAY NOW</button>
+      <button class="play-now">PLAY NOW</button>
     </div>
   </div>
 
@@ -47,30 +48,26 @@
   </footer>
 
   <script>
-    // Function to display the username or error message if not logged in
-    function displayUsername() {
-      const username = localStorage.getItem('loggedInUser');
-      const usernameDisplay = document.getElementById("username-display");
-      const accountInfo = document.getElementById("account-info");
-      const errorMessage = document.getElementById("error-message");
-
-      if (username) {
-        usernameDisplay.textContent = username;
+    // Community link click handler
+    document.getElementById("community-link").addEventListener("click", function(event) {
+      event.preventDefault();
+      const loggedInUser = localStorage.getItem("loggedInUser");
+      if (loggedInUser) {
+        window.location.href = "community.html";
       } else {
-        accountInfo.style.display = "none";  // Hide account info if not logged in
-        errorMessage.style.display = "block";  // Show error message
+        alert("Please log in to access the Community.");
       }
-    }
+    });
 
-    // Logout function to clear localStorage and redirect to login page
-    function logout() {
-      localStorage.removeItem('loggedInUser');
-      alert("You have logged out.");
-      window.location.href = "index.html"; // Redirect to the login page
-    }
-
-    // Call the function to display the username or error message when the page loads
-    window.onload = displayUsername;
+    // Play Now buttons click handler
+    document.querySelectorAll(".play-now").forEach(button => {
+      button.addEventListener("click", () => {
+        const loggedInUser = localStorage.getItem("loggedInUser");
+        if (!loggedInUser) {
+          alert("Please log in to play the game.");
+        } // else do nothing for now
+      });
+    });
   </script>
 </body>
 </html>
