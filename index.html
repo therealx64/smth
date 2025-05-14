@@ -8,21 +8,21 @@
 <body>
   <div class="header">
     <img src="assets/images/bloxtopia-logo.png" alt="Bloxtopia Logo" class="logo">
-    <button class="play-now" onclick="window.location.href='game.html'">PLAY NOW</button>
+    <button class="play-now">PLAY NOW</button>
   </div>
 
-<nav class="navbar">
-  <a href="#">Home</a>
-  <a href="community.html">Community</a>
-  <a href="#">Games</a>
-  <a href="#">Catalog</a>
-  <a href="#">Forum</a>
-  <a href="#">News</a>
-  <a href="#">Help</a>
-</nav>
+  <nav class="navbar">
+    <a href="home.html">Home</a>
+    <a href="#">Games</a>
+    <a href="#">Catalog</a>
+    <a href="community.html">Community</a>
+    <a href="#">Forum</a>
+    <a href="#">News</a>
+    <a href="#">Help</a>
+  </nav>
 
   <div class="alert">
-    uh oh looks like you found this <a href="#">test.bloxtopia.com</a>
+    Uh oh, looks like you found this <a href="#">test.bloxtopia.com</a>
   </div>
 
   <div class="main-content">
@@ -48,35 +48,35 @@
   </footer>
 
   <script>
-    // Simulate registration
-    function register() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+    const SHEET_URL = 'https://script.google.com/a/macros/wsdr4.org/s/AKfycbwGzuJif5kwk8dERZC68MsH0DAHiR7-SxabHUk4PLeUQecDHK7qnWkhj-pQVMvxDAVk/exec';
 
-      if (username && password) {
-        // Store user data in localStorage (for demo purposes, not secure)
-        localStorage.setItem(username, password);
-        alert("Registration successful! You can now login.");
-      } else {
-        alert("Please enter a username and password.");
+    function login() {
+      const inputUser = document.getElementById('username').value.trim();
+
+      if (!inputUser) {
+        alert('Please enter a username.');
+        return;
       }
+
+      fetch(SHEET_URL)
+        .then(res => res.json())
+        .then(users => {
+          const found = users.find(user => user.Username.toLowerCase() === inputUser.toLowerCase());
+          if (found) {
+            localStorage.setItem("loggedInUser", found.Username);
+            window.location.href = "home.html";
+          } else {
+            alert("Username not found. Please register.");
+          }
+        })
+        .catch(err => {
+          console.error("Failed to load user data:", err);
+          alert("Could not check user data. Try again later.");
+        });
     }
 
-    // Simulate login
-    function login() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      const storedPassword = localStorage.getItem(username);
-
-      if (storedPassword && storedPassword === password) {
-        localStorage.setItem('loggedInUser', username); // Store the logged-in user
-        alert("Login successful! Welcome, " + username + "!");
-        // Redirect to home page
-        window.location.href = 'home.html';
-      } else {
-        alert("Invalid username or password.");
-      }
+    function register() {
+      alert("Registration is disabled.");
     }
   </script>
 </body>
