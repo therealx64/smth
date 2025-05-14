@@ -26,22 +26,14 @@
   </div>
 
   <div class="main-content">
-    <div class="account-info">
+    <div id="account-info" class="account-info">
       <h3>Welcome, <span id="username-display">Guest</span></h3>
       <button onclick="logout()">Logout</button>
     </div>
 
-    <!-- Blocky Avatar -->
-    <div class="avatar-container">
-      <div class="avatar">
-        <div class="head"></div>
-        <div class="body"></div>
-        <div class="left-arm"></div>
-        <div class="right-arm"></div>
-        <div class="left-leg"></div>
-        <div class="right-leg"></div>
-      </div>
-      <p>Your Blocky Avatar</p>
+    <!-- Error Message if not logged in -->
+    <div id="error-message" class="error-message" style="display: none;">
+      <p>Error: You are not logged in! Please <a href="index.html">login</a> to continue.</p>
     </div>
 
     <div class="ad-banner">
@@ -55,15 +47,18 @@
   </footer>
 
   <script>
-    // Function to display the username
+    // Function to display the username or error message if not logged in
     function displayUsername() {
       const username = localStorage.getItem('loggedInUser');
       const usernameDisplay = document.getElementById("username-display");
+      const accountInfo = document.getElementById("account-info");
+      const errorMessage = document.getElementById("error-message");
 
       if (username) {
         usernameDisplay.textContent = username;
       } else {
-        usernameDisplay.textContent = "Guest";
+        accountInfo.style.display = "none";  // Hide account info if not logged in
+        errorMessage.style.display = "block";  // Show error message
       }
     }
 
@@ -74,7 +69,7 @@
       window.location.href = "index.html"; // Redirect to the login page
     }
 
-    // Call the function to display the username when the page loads
+    // Call the function to display the username or error message when the page loads
     window.onload = displayUsername;
   </script>
 </body>
