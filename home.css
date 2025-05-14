@@ -60,63 +60,13 @@ body {
   text-align: center;
 }
 
-.avatar-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.avatar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 120px; /* Ensure it's wide enough to display properly */
-}
-
-.head {
-  width: 60px;
-  height: 60px;
-  background-color: #f9c74f;
-  border-radius: 10px;
-}
-
-.body {
-  width: 80px;
-  height: 100px;
-  background-color: #4a90e2;
-  margin-top: 10px;
-}
-
-.left-arm, .right-arm {
-  width: 20px;
-  height: 80px;
-  background-color: #f9c74f;
-  margin-top: 10px;
-}
-
-.left-arm {
-  margin-left: -25px; /* Adjust position to the left */
-}
-
-.right-arm {
-  margin-left: 25px; /* Adjust position to the right */
-}
-
-.left-leg, .right-leg {
-  width: 20px;
-  height: 80px;
-  background-color: #2d2d2d;
-  margin-top: 10px;
-}
-
-.left-leg {
-  margin-left: -25px; /* Adjust position to the left */
-}
-
-.right-leg {
-  margin-left: 25px; /* Adjust position to the right */
+.error-message {
+  text-align: center;
+  background-color: #ff6666;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 1.2em;
 }
 
 .ad-banner {
