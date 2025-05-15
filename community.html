@@ -2,66 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Community - Bloxtopia</title>
+  <title>Bloxtopia - Community</title>
   <link rel="stylesheet" href="community.css" />
 </head>
 <body>
   <div class="header">
     <img src="assets/images/bloxtopia-logo.png" alt="Bloxtopia Logo" class="logo" />
-    <button class="play-now">PLAY NOW</button>
+    <button class="play-now" onclick="alert('Login to play!')">PLAY NOW</button>
   </div>
 
   <nav class="navbar">
     <a href="home.html">Home</a>
-    <a href="community.html" class="active">Community</a>
-    <a href="#">Games</a>
-    <a href="#">Catalog</a>
-    <a href="#">Forum</a>
-    <a href="#">News</a>
-    <a href="#">Help</a>
+    <a href="games.html">Games</a>
+    <a href="catalog.html">Catalog</a>
+    <a href="community.html">Community</a>
+    <a href="forum.html">Forum</a>
+    <a href="news.html">News</a>
+    <a href="help.html">Help</a>
   </nav>
 
-  <main>
-    <h2>Community Users</h2>
-    <ul id="user-list"></ul>
-  </main>
+  <div class="main-content" id="user-list">
+    <!-- User list will appear here -->
+  </div>
 
   <footer>
     <p>Bloxtopia is not affiliated with any other game platforms.</p>
   </footer>
 
-  <script>
-    // Check if user logged in
-    const loggedInUser = localStorage.getItem("loggedInUser");
-    if (!loggedInUser) {
-      alert("Please log in to view the Community.");
-      window.location.href = "index.html"; // redirect to login page
+<script>
+  const userListDiv = document.getElementById("user-list");
+  const users = JSON.parse(localStorage.getItem("users") || "{}");
+
+  if (Object.keys(users).length === 0) {
+    userListDiv.innerHTML = "<p>No users found. Please register first.</p>";
+  } else {
+    let html = "<h2>Community Users</h2><ul>";
+    for (const username in users) {
+      html += `<li>${username} — Offline</li>`;  // We don't track online status here, so default offline
     }
-
-    // Dummy user data - in a real app this would come from backend
-    const users = [
-      { username: "PlayerOne", online: true },
-      { username: "BlockBuilder", online: false },
-      { username: "PixelMaster", online: true },
-      { username: "Guest123", online: false }
-    ];
-
-    const userListEl = document.getElementById("user-list");
-    users.forEach(user => {
-      const li = document.createElement("li");
-      li.textContent = user.username;
-      li.className = user.online ? "online" : "offline";
-      userListEl.appendChild(li);
-    });
-
-    // Play Now button alert if not logged in (just in case)
-    document.querySelectorAll(".play-now").forEach(button => {
-      button.addEventListener("click", () => {
-        if (!loggedInUser) {
-          alert("Please log in to play the game.");
-        }
-      });
-    });
-  </script>
+    html += "</ul>";
+    userListDiv.innerHTML = html;
+  }
+</script>
 </body>
 </html>
